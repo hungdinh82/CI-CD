@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  test CICD jobs:
+  test_CICD_jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
