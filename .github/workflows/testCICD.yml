@@ -11,7 +11,5 @@ jobs:
   test_CICD_jobs:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - run: echo "Today = $(date + %y-%m-%d)" >> $GITHUB_ENV
-      - run: echo "Hello, World!, today is $Today"
+      - run: echo Hello, World!, today is ${{ env.Today }}
