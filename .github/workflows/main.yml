@@ -1,0 +1,20 @@
+name: Test CICD
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  merge:
+    branches:
+      - main
+
+jobs:
+  test CICD jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - run: echo "Hello, World!"
