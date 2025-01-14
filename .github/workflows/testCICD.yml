@@ -1,18 +1,38 @@
-name: Test CICD
-on: 
+name: coverage
+
+on:
   push:
     branches:
       - main
   pull_request:
-    branches:
-      - main
+    types:
+      - opened
+      - reopened
+  workflow_run:
+    types:
+      - completed
 
 jobs:
-  test_CICD_jobs:
+  coverage-report:
     runs-on: ubuntu-latest
-    steps:
-      - name: Set today's date
-        run: echo "TODAY=$(date +%y-%m-%d)" >> $GITHUB_ENV
 
-      - name: Print today's date
-        run: echo "Hello, World, today is ${{ env.TODAY }}"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+
+      - name: Install dependencies
+        run: go mod tidy
+
+      - name: Run tests
+        run: go test ./... -v -coverprofile=coverage.out
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: hungdinh82/CI-CD
