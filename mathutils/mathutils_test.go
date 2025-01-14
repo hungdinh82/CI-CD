@@ -8,7 +8,7 @@ func TestAdd(t *testing.T) {
 		a, b     int
 		expected int
 	}{
-		{"Add positive numbers", 1, 2, 6},
+		{"Add positive numbers", 1, 2, 3},
 		{"Add negative numbers", -1, -2, -3},
 		{"Add zero and number", 0, 5, 5},
 		{"Add two zeros", 0, 0, 0},
