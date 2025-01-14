@@ -1,0 +1,28 @@
+name: coverage
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+
+jobs:
+  coverage-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+      - name: Test & Coverage
+        run: |
+          go install github.com/ory/go-acc@v0.2.6
+          go-acc -o coverage.txt ./... -- -v --race
+      - uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.txt
