@@ -1,18 +1,18 @@
-name: Test CICD
-on: 
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+# name: Test CICD
+# on: 
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
-jobs:
-  test_CICD_jobs:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set today's date
-        run: echo "TODAY=$(date +%y-%m-%d)" >> $GITHUB_ENV
+# jobs:
+#   test_CICD_jobs:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Set today's date
+#         run: echo "TODAY=$(date +%y-%m-%d)" >> $GITHUB_ENV
 
-      - name: Print today's date
-        run: echo "Hello, World, today is ${{ env.TODAY }}"
+#       - name: Print today's date
+#         run: echo "Hello, World, today is ${{ env.TODAY }}"
