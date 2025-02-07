@@ -1,0 +1,24 @@
+name: Simple Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Chọn môi trường'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Display environment
+        run: echo "Hello how are you today?"
